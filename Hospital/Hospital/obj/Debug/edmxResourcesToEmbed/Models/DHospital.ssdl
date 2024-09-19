@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="a_id" />
+    </Key>
+    <Property Name="a_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_id" Type="int" Nullable="false" />
+    <Property Name="d_id" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="a_fname" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="a_lname" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="a_gender" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="a_email" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="a_contact" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="d_id" />
+    </Key>
+    <Property Name="d_id" Type="int" Nullable="false" />
+    <Property Name="d_name" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="d_email" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="d_address" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="d_dept" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="d_salary" Type="int" />
+    <Property Name="d_experience" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="d_contact" Type="int" Nullable="false" />
+    <Property Name="d_image" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="d_qualification" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="d_wh" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_firstname" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="p_lastname" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="p_email" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="p_password" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="ReportId" />
+    </Key>
+    <Property Name="ReportId" Type="int" Nullable="false" />
+    <Property Name="p_id" Type="int" Nullable="false" />
+    <Property Name="FileName" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="FilePath" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateTime UploadDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="HospitalModelStoreContainer">
+    <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Hospital.Models.Patient>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Patients</h1>
+    <table class="table table-hover shadow">
+        <thead class="thead-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var patient in Model)
+            {
+                <tr>
+                    <td>@patient.p_firstname</td>
+                    <td>@patient.p_lastname</td>
+                    <td>@patient.p_email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

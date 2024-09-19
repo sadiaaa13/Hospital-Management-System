@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+    //Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+
+<div class="banner"></div>
+
+<div class="container mt-5">
+    <h1>Doctor Dashboard</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="~/Content/images/appointments.jpg" alt="Appointments">
+                <div class="card-body">
+                    <h5 class="card-title">Appointments</h5>
+                    <p class="card-text">Manage appointments.</p>
+                    <a href="@Url.Action("Appointment", "Admin")" class="btn btn-light">View Appointments</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="~/Content/images/patients.jpg" alt="Patients">
+                <div class="card-body">
+                    <h5 class="card-title">Patients</h5>
+                    <p class="card-text">Manage patient information.</p>
+                    <a href="@Url.Action("Patients", "Admin")" class="btn btn-light">View Patients</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="~/Content/images/doctors.jpg" alt="Doctors">
+                <div class="card-body">
+                    <h5 class="card-title">Reports</h5>
+                    <p class="card-text">Manage doctor information.</p>
+                    <a href="@Url.Action("Report", "Admin")" class="btn btn-light">View Reports</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

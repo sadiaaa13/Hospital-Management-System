@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HospitalModelStoreContainer" CdmEntityContainer="HospitalEntities">
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="HospitalModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="p_firstname" ColumnName="p_firstname" />
+          <ScalarProperty Name="p_lastname" ColumnName="p_lastname" />
+          <ScalarProperty Name="p_email" ColumnName="p_email" />
+          <ScalarProperty Name="p_password" ColumnName="p_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="HospitalModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="d_wh" ColumnName="d_wh" />
+          <ScalarProperty Name="d_qualification" ColumnName="d_qualification" />
+          <ScalarProperty Name="d_image" ColumnName="d_image" />
+          <ScalarProperty Name="d_contact" ColumnName="d_contact" />
+          <ScalarProperty Name="d_experience" ColumnName="d_experience" />
+          <ScalarProperty Name="d_salary" ColumnName="d_salary" />
+          <ScalarProperty Name="d_dept" ColumnName="d_dept" />
+          <ScalarProperty Name="d_address" ColumnName="d_address" />
+          <ScalarProperty Name="d_email" ColumnName="d_email" />
+          <ScalarProperty Name="d_name" ColumnName="d_name" />
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appointments">
+      <EntityTypeMapping TypeName="HospitalModel.Appointment">
+        <MappingFragment StoreEntitySet="Appointment">
+          <ScalarProperty Name="a_contact" ColumnName="a_contact" />
+          <ScalarProperty Name="a_email" ColumnName="a_email" />
+          <ScalarProperty Name="a_gender" ColumnName="a_gender" />
+          <ScalarProperty Name="a_lname" ColumnName="a_lname" />
+          <ScalarProperty Name="a_fname" ColumnName="a_fname" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="d_id" ColumnName="d_id" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="a_id" ColumnName="a_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="HospitalModel.Report">
+        <MappingFragment StoreEntitySet="Report">
+          <ScalarProperty Name="DateTime_UploadDate" ColumnName="DateTime UploadDate" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

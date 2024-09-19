@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Hospital.Models.Appointment>
+
+@{
+    ViewBag.Title = "Appointments";
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Appointments</h1>
+    <table class="table table-hover shadow">
+        <thead class="thead-dark">
+            <tr>
+                <th>Patient Name</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appointment in Model)
+            {
+                <tr>
+                    <td>@(appointment.a_fname + " " + appointment.a_lname)</td>
+                    <td>@appointment.date.ToString("yyyy-MM-dd hh:mm tt")</td>
+                    <td>
+                        <span class="badge @(appointment.status == "Confirmed" ? "badge-success" : appointment.status == "Pending" ? "badge-warning" : "badge-danger")">
+                            @appointment.status
+                        </span>
+                    </td>
+                    <td>
+                     
+                        <a href="@Url.Action("ConfirmAppointment", "Admin", new { id = appointment.a_id })" class="btn btn-success btn-sm">Confirm</a>
+                        <a href="@Url.Action("PendingAppointment", "Admin", new { id = appointment.a_id })" class="btn btn-warning btn-sm">Pending</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Add custom CSS for the appointments page -->
+<style>
+    .table-hover tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .badge {
+        padding: 0.5em 0.75em;
+        font-size: 0.85em;
+    }
+
+    .btn-sm {
+        font-size: 0.85em;
+    }
+
+    .badge-success {
+        background-color: #28a745;
+    }
+
+    .badge-warning {
+        background-color: #ffc107;
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+
+        .btn-primary:hover,
+        .btn-danger:hover,
+        .btn-success:hover,
+        .btn-warning:hover {
+            opacity: 0.85;
+        }
+</style>

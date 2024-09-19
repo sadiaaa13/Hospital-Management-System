@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Hospital</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/site.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="index.html"><img src="~/Content/images/logo1.png"></a>
+       
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("Dashboard", "Admin")">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("Patients", "Admin")">Patients</a></li>
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("Report", "Admin")">Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("Appointment", "Admin")">Appointment</a></li>
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("DoctorProfile", "Admin", new { id = 1 })">Doctor Profile</a></li> <!-- Example link with id = 1 -->
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

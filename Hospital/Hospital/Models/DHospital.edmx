@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="a_id" />
+          </Key>
+          <Property Name="a_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="d_id" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="a_fname" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="a_lname" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="a_gender" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="a_email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="a_contact" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="d_id" />
+          </Key>
+          <Property Name="d_id" Type="int" Nullable="false" />
+          <Property Name="d_name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="d_email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="d_address" Type="nchar" MaxLength="200" Nullable="false" />
+          <Property Name="d_dept" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="d_salary" Type="int" />
+          <Property Name="d_experience" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="d_contact" Type="int" Nullable="false" />
+          <Property Name="d_image" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="d_qualification" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="d_wh" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_firstname" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="p_lastname" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="p_email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="p_password" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="int" Nullable="false" />
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="FilePath" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateTime UploadDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="HospitalModelStoreContainer">
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_firstname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="p_lastname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="p_email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="p_password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="HospitalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Doctors" EntityType="HospitalModel.Doctor" />
+          <EntitySet Name="Appointments" EntityType="HospitalModel.Appointment" />
+          <EntitySet Name="Reports" EntityType="HospitalModel.Report" />
+        </EntityContainer>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="d_id" />
+          </Key>
+          <Property Name="d_id" Type="Int32" Nullable="false" />
+          <Property Name="d_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="d_email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="d_address" Type="String" Nullable="false" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="d_dept" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="d_salary" Type="Int32" />
+          <Property Name="d_experience" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="d_contact" Type="Int32" Nullable="false" />
+          <Property Name="d_image" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="d_qualification" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="d_wh" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="a_id" />
+          </Key>
+          <Property Name="a_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="d_id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="a_fname" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="a_lname" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="a_gender" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="a_email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="a_contact" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="DateTime_UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HospitalModelStoreContainer" CdmEntityContainer="HospitalEntities">
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="HospitalModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="p_firstname" ColumnName="p_firstname" />
+                <ScalarProperty Name="p_lastname" ColumnName="p_lastname" />
+                <ScalarProperty Name="p_email" ColumnName="p_email" />
+                <ScalarProperty Name="p_password" ColumnName="p_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="HospitalModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="d_wh" ColumnName="d_wh" />
+                <ScalarProperty Name="d_qualification" ColumnName="d_qualification" />
+                <ScalarProperty Name="d_image" ColumnName="d_image" />
+                <ScalarProperty Name="d_contact" ColumnName="d_contact" />
+                <ScalarProperty Name="d_experience" ColumnName="d_experience" />
+                <ScalarProperty Name="d_salary" ColumnName="d_salary" />
+                <ScalarProperty Name="d_dept" ColumnName="d_dept" />
+                <ScalarProperty Name="d_address" ColumnName="d_address" />
+                <ScalarProperty Name="d_email" ColumnName="d_email" />
+                <ScalarProperty Name="d_name" ColumnName="d_name" />
+                <ScalarProperty Name="d_id" ColumnName="d_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Appointments">
+            <EntityTypeMapping TypeName="HospitalModel.Appointment">
+              <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="a_contact" ColumnName="a_contact" />
+                <ScalarProperty Name="a_email" ColumnName="a_email" />
+                <ScalarProperty Name="a_gender" ColumnName="a_gender" />
+                <ScalarProperty Name="a_lname" ColumnName="a_lname" />
+                <ScalarProperty Name="a_fname" ColumnName="a_fname" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="d_id" ColumnName="d_id" />
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="a_id" ColumnName="a_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="HospitalModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="DateTime_UploadDate" ColumnName="DateTime UploadDate" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

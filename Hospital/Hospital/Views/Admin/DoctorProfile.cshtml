@@ -1,0 +1,40 @@
+﻿@model Hospital.Models.DoctorProfile
+
+@{
+    ViewBag.Title = "Doctor Profile";
+   // Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+
+<div class="container profile-container">
+    <div class="row">
+        <div class="col-md-4 profile-image">
+            <img src="@Model.ProfileImageUrl" alt="Doctor Profile Image" class="img-fluid rounded-circle">
+            <h3 class="text-center mt-3">@Model.Name</h3>
+        </div>
+        <div class="col-md-8 profile-details">
+            <h2 class="text-uppercase">Profile</h2>
+            <hr>
+            <h4>@Model.Name</h4>
+            <p>@Model.Qualification</p>
+            <p>@Model.Hospital</p>
+            <h3 class="text-uppercase">Speciality</h3>
+            <hr>
+            @foreach (var specialty in Model.Specialties)
+            {
+                <span class="badge badge-dark">@specialty</span>
+            }
+            <h3 class="text-uppercase">Experience</h3>
+            <hr>
+            <p>@Model.Experience</p>
+            <h3 class="text-uppercase">Contact</h3>
+            <hr>
+            <p>@Model.ContactNumber</p>
+            <h3 class="text-uppercase">Address</h3>
+            <hr>
+            <p>@Model.Address</p>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,242 @@
+﻿body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+/* Custom styles for the admin dashboard */
+.banner {
+    width: 100%;
+    height: 400px;
+    background: url('../images/banner.jpg') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 30px;
+}
+
+.card img {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* Custom styles for the admin dashboard */
+.banner {
+    width: 100%;
+    height: 400px;
+    background: url('../images/banner.jpg') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 30px;
+}
+
+.card img {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Add shadow and hover effects for cards */
+.card {
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Adds space between cards */
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        background-color: white; /* White background on hover */
+        color: #007bff; /* Blue text on hover */
+    }
+
+    .card .btn {
+        transition: transform 0.3s ease, background-color 0.2s, color 0.2s;
+    }
+
+        .card .btn:hover {
+            background-color: #007bff; /* Blue background on hover */
+            color: white; /* White text on hover */
+        }
+
+.profile-container {
+    background-color: #f0f9ff; /* light blue */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.5); /* cyan shadow */
+}
+
+.profile-details {
+    padding-left: 30px;
+}
+
+    .profile-details h2, .profile-details h3 {
+        color: #007bff; /* blue */
+    }
+
+    .profile-details h4 {
+        color: #17a2b8; /* cyan */
+    }
+
+    .profile-details p {
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .profile-details hr {
+        border-top: 2px solid #007bff; /* blue */
+    }
+
+.badge-dark {
+    background-color: #17a2b8; /* cyan */
+    color: #fff;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.pat-card {
+    border: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .pat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .pat-card .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .pat-card .card-text {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .pat-card .patient-avatar {
+        width: 50px;
+        height: 50px;
+        border: 2px solid #007bff; /* blue */
+        border-radius: 50%; /* Ensuring it's circular */
+    }
+
+.card.pat-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+    .card.pat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card.pat-card .card-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card.pat-card .card-body {
+        padding: 15px;
+    }
+
+    .card.pat-card .card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card.pat-card .card-text {
+        color: #555;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+/* Custom styles for the appointments page */
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #343a40;
+}
+
+.table {
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.thead-dark th {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+    .btn-primary:hover,
+    .btn-danger:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
