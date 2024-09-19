@@ -1,0 +1,134 @@
+﻿@using Hospital.Models
+@model Hospital.Models.Patient_reg
+@{
+    ViewBag.Title = "registration";
+}
+
+<span style="font-family: verdana, geneva, sans-serif;">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Sign Up | By Code Info</title>
+        <link rel="stylesheet" href="Css/style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+              rel="stylesheet" />
+        <style>
+            <span style="font-family: verdana, geneva, sans-serif;" >
+            body {
+                background-color: #344a72;
+                font-family: "Roboto", sans-serif;
+            }
+
+            .signup-box {
+                width: 360px;
+                height: 620px;
+                margin: auto;
+                background-color: white;
+                border-radius: 3px;
+            }
+
+            .login-box {
+                width: 360px;
+                height: 280px;
+                margin: auto;
+                border-radius: 3px;
+                background-color: white;
+            }
+
+            h1 {
+                text-align: center;
+                padding-top: 15px;
+            }
+
+            h4 {
+                text-align: center;
+            }
+
+            form {
+                width: 300px;
+                margin-left: 20px;
+            }
+
+                form label {
+                    display: flex;
+                    margin-top: 20px;
+                    font-size: 18px;
+                }
+
+                form input {
+                    width: 100%;
+                    padding: 7px;
+                    border: none;
+                    border: 1px solid gray;
+                    border-radius: 6px;
+                    outline: none;
+                }
+
+            input[type="button"] {
+                width: 320px;
+                height: 35px;
+                margin-top: 20px;
+                border: none;
+                background-color: #49c1a2;
+                color: white;
+                font-size: 18px;
+            }
+
+            p {
+                text-align: center;
+                padding-top: 20px;
+                font-size: 15px;
+            }
+
+            .para-2 {
+                text-align: center;
+                color: black;
+                font-size: 15px;
+                margin-top: 0px;
+                margin-right: 30px !important;
+            }
+
+                .para-2 a {
+                    color: black;
+                }
+
+            </span >
+        </style>
+    </head>
+    <body>
+        <div class="signup-box">
+            <h1>Sign Up</h1>
+            <h4> Patient Registration </h4>
+            <form method="post">
+                @Html.ValidationSummary(true)
+                <label>First Name</label>
+                <input type="text" name="p_firstname" placeholder="Enter your firstname">
+                @Html.ValidationMessageFor(model => model.p_firstname, "", new { @class = "text-danger" })
+                <label>Last Name</label>
+                <input type="text" name="p_lastname" placeholder="Enter your Last Name" />
+                @Html.ValidationMessageFor(model => model.p_lastname, "", new { @class = "text-danger" })
+                <label>Email</label>
+                <input type="email" name="p_email" placeholder="Enter Email " />
+                @Html.ValidationMessageFor(model => model.p_email, "", new { @class = "text-danger" })
+                <label>Password</label>
+                <input type="password" name="p_password" placeholder="Enter Password" />
+                @Html.ValidationMessageFor(model => model.p_password, "", new { @class = "text-danger" })
+                <label>Confirm Password</label>
+                <input type="password"name="p_confirm_password" placeholder="Confirm Password" />
+                <br></br>
+               <center> <button type="submit" class="btn btn-primary">Submit</button></center>
+</form>
+
+
+        </div>
+        <a href=Log In</a>
+
+        <p class="para-2">
+            Already have an account? <a href="@Url.Action("login", "Patient")">Login here</a>
+        </p>
+
+
+    </body>
+</html>
+</span>
+

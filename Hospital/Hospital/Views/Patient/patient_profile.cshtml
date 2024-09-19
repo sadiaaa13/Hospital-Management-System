@@ -1,0 +1,221 @@
+﻿@{
+    ViewBag.Title = "patient_profile";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #00796b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            border-radius: 5px;
+        }
+
+            .sidebar a {
+                color: white;
+                text-decoration: none;
+                margin: 10px 0;
+                padding: 10px;
+                background-color: #004d40;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+                .sidebar a:hover {
+                    background-color: #002d20;
+                }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding-left: 55px;
+            overflow-y: auto;
+        }
+
+        .section {
+            display: none;
+        }
+
+            .section.active {
+                display: block;
+            }
+
+        .summary, .appointments {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+        }
+
+            .summary h2, .appointments h2 {
+                border-bottom: 2px solid #00bcd4;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+                color: #00796b;
+            }
+
+            .summary p, .appointments p {
+                margin: 10px 0;
+                color: #004d40;
+            }
+
+            .appointments ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .appointments li {
+                background-color: #e0f7fa;
+                margin: 10px 0;
+                padding: 10px;
+                border-radius: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+                .appointments li .details {
+                    flex-grow: 1;
+                }
+
+                    .appointments li .details p {
+                        margin: 5px 0;
+                    }
+
+                .appointments li .status {
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    color: white;
+                }
+
+        .status.completed {
+            background-color: #00796b;
+        }
+
+        .status.upcoming {
+            background-color: #fbc02d;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin:15px;margin-top:125px;">
+        <div class="sidebar" style="float:left;">
+            <a href="#" onclick="showSection('patient-info')">Patient Information</a>
+            <a href="#" onclick="showSection('medical-info')">Medical Information</a>
+            <a href="#" onclick="showSection('emergency-contact')">Emergency Contact</a>
+            <a href="#" onclick="showSection('recent-appointments')">Recent Appointments</a>
+            <a href="#" onclick="showSection('upcoming-appointments')">Upcoming Appointments</a>
+            <a href="#">Log Out</a>
+        </div>
+        <div class="main-content" style="float:left;width:80%;">
+            <div id="patient-info" class="section active">
+                <div class="summary">
+                    <h2>Patient Summary</h2>
+                    <p><strong>Name:</strong> @ViewBag.PatientName</p>
+                    <p><strong>Age:</strong> 45</p>
+                    <p><strong>Blood Type:</strong> O+</p>
+                    <p><strong>Conditions:</strong> Hypertension, Diabetes</p>
+                    <h2>Personal Information</h2>
+                    <p><strong class="icon">🏠</strong><strong>Address:</strong> 123 Main St, Anytown, USA</p>
+                    <p><strong class="icon">📞</strong><strong>Phone:</strong> (123) 456-7890</p>
+                    <p><strong class="icon">✉️</strong><strong>Email:</strong> johndoe@example.com</p>
+                </div>
+            </div>
+            <div id="medical-info" class="section">
+                <div class="summary">
+                    <h2>Medical Information</h2>
+                    <p><strong class="icon">💉</strong><strong>Medical Conditions:</strong> Hypertension, Diabetes</p>
+                    <p><strong class="icon">💊</strong><strong>Medications:</strong> Lisinopril, Metformin</p>
+                    <p><strong class="icon">⚠️</strong><strong>Allergies:</strong> Penicillin</p>
+                </div>
+            </div>
+            <div id="emergency-contact" class="section">
+                <div class="summary">
+                    <h2>Emergency Contact</h2>
+                    <p><strong class="icon">👤</strong><strong>Name:</strong> Jane Doe</p>
+                    <p><strong class="icon">🔗</strong><strong>Relationship:</strong> Spouse</p>
+                    <p><strong class="icon">📞</strong><strong>Phone:</strong> (123) 456-7891</p>
+                </div>
+            </div>
+            <div id="recent-appointments" class="section">
+                <div class="appointments">
+                    <h2>Recent Appointments</h2>
+                    <ul>
+                        <li>
+                            <div class="details">
+                                <p><strong>Date:</strong> July 15, 2024</p>
+                                <p><strong>Doctor:</strong> Dr. Smith</p>
+                                <p><strong>Notes:</strong> Routine check-up</p>
+                            </div>
+                            <div class="status completed">Completed</div>
+                        </li>
+                        <li>
+                            <div class="details">
+                                <p><strong>Date:</strong> June 20, 2024</p>
+                                <p><strong>Doctor:</strong> Dr. Johnson</p>
+                                <p><strong>Notes:</strong> Follow-up on blood pressure</p>
+                            </div>
+                            <div class="status completed">Completed</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="upcoming-appointments" class="section">
+                <div class="appointments">
+                    <h2>Upcoming Appointments</h2>
+                    <ul>
+                        <li>
+                            <div class="details">
+                                <p><strong>Date:</strong> August 10, 2024</p>
+                                <p><strong>Doctor:</strong> Dr. Brown</p>
+                                <p><strong>Notes:</strong> Annual physical exam</p>
+                            </div>
+                            <div class="status upcoming">Upcoming</div>
+                        </li>
+                        <li>
+                            <div class="details">
+                                <p><strong>Date:</strong> September 5, 2024</p>
+                                <p><strong>Doctor:</strong> Dr. White</p>
+                                <p><strong>Notes:</strong> Diabetes management consultation</p>
+                            </div>
+                            <div class="status upcoming">Upcoming</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="clear:left;"></div>
+    </div>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(function (section) {
+                section.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

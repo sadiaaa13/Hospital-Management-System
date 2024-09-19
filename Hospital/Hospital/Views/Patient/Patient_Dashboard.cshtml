@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Patient_Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal</title>
+    <link rel="stylesheet" href="path/to/bootstrap.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+
+        .portal-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            display: flex;
+        }
+
+            .portal-header img {
+                width: 100%;
+                height: auto;
+            }
+
+            .portal-header h1 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-size: 3rem;
+                text-shadow: 2px 2px 4px #000000;
+                z-index: 1;
+            }
+
+            .portal-header .buttons {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                z-index: 2;
+            }
+
+                .portal-header .buttons .btn {
+                    margin-left: 10px; /* Add some spacing between the buttons */
+                }
+
+        .card {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+            height: 100%; /* Ensure cards have equal height */
+        }
+
+            .card img {
+                height: 150px; /* Fixed height for images */
+                object-fit: cover; /* Ensure images cover the fixed height */
+            }
+
+            .card:hover {
+                transform: translateY(-10px); /* Move the card up on hover */
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+            }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            padding: 15px;
+        }
+
+        .card-title {
+            margin-top: 10px;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .card-text {
+            flex-grow: 1; /* Take remaining space */
+            margin: 10px 0;
+        }
+
+        .btn {
+            align-self: center; /* Center align the button */
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="portal-header">
+            <img src="https://media.istockphoto.com/id/1046447804/photo/in-the-hospital-sick-male-patient-sleeps-on-the-bed-heart-rate-monitor-equipment-is-on-his.jpg?s=612x612&w=0&k=20&c=okoIEyjs22DW0Vb2wCxHGemh2k_44wCo439Q2t2MYsw=" alt="Patient Portal Image" class="img-fluid">
+
+            <h1>Patient Portal</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZAAkr2UTtS4Hm9dQgeMX7zBDyXWMURyNFLkytME5UfL3Q1gR4MszjZjcAu83XcBMXOlE&usqp=CAU" alt="Request an Appointment" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Find A Doctor</h5>
+                        <p class="card-text">Schedule or manage your appointments.</p>
+                        <a href="@Url.Action("Find_a_doctor", "Patient")" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://t3.ftcdn.net/jpg/02/16/47/22/360_F_216472247_cT66WDoS0fp1s3wC7eaykMJNDGVbOBPq.jpg" alt="Request a Prescription" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Request a Prescription</h5>
+                        <p class="card-text">Request new prescriptions or refills.</p>
+                        <a href="path/to/request_prescription" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZAAkr2UTtS4Hm9dQgeMX7zBDyXWMURyNFLkytME5UfL3Q1gR4MszjZjcAu83XcBMXOlE&usqp=CAU" alt="Virtual Visit" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Patient profile</h5>
+                        <p class="card-text">Have a look </p>
+                        <a href="@Url.Action("patient_profile", "Patient")" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZAAkr2UTtS4Hm9dQgeMX7zBDyXWMURyNFLkytME5UfL3Q1gR4MszjZjcAu83XcBMXOlE&usqp=CAU" alt="Message My Doctor" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Message My Doctor</h5>
+                        <p class="card-text">Send messages to your doctor.</p>
+                        <a href="@Url.Action("not_available", "Patient")" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2024 Hospital Management System. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="path/to/jquery.js"></script>
+    <script src="path/to/bootstrap.js"></script>
+</body>
+</html>
