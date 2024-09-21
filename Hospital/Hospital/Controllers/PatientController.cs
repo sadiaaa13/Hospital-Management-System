@@ -17,13 +17,13 @@ namespace Hospital.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View("Patient_Dashboard", "_patientLayout");
         }
         public ActionResult login()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View("login", "_patientLayout");
         }
         [HttpPost]
         public ActionResult login(string email, string password)
@@ -43,7 +43,7 @@ namespace Hospital.Controllers
                 {
                     var patient = new
                     {
-                        
+
                         p_name = reader["p_firstname"].ToString(),
                         p_id = reader["p_id"].ToString(),
                     };
@@ -67,7 +67,7 @@ namespace Hospital.Controllers
         {
 
 
-            return View();
+            return View("registration", "_patientLayout");
         }
 
         [HttpPost]
@@ -95,25 +95,25 @@ namespace Hospital.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View("Find_a_doctor", "_patientLayout");
         }
         public ActionResult Request_for_an_apointment()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View("Request_for_an_apointment", "_patientLayout");
         }
         public ActionResult not_available()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View("not_available", "_patientLayout");
         }
-       public ActionResult patient_profile()
+        public ActionResult patient_profile()
         {
 
             ViewBag.Message = "Your contact page.";
-            return View();
+            return View("patient_profile", "_patientLayout");
 
         }
         private Patient GetLoggedInPatientProfile(string loggedInPatientEmail)
@@ -148,6 +148,6 @@ namespace Hospital.Controllers
             return patient;
         }
     }
-   
-   
+
+
 }
