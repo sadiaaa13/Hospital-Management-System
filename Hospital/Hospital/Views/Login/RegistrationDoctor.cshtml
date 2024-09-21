@@ -1,0 +1,202 @@
+﻿@using Hospital.Models
+@model Hospital.Models.FDoctor
+@{
+    ViewBag.Title = "RegistrationDoctor";
+}
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background-color: #fff;
+        padding: 20px 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+    }
+
+        .form-container h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #43b0f1;
+             color: #fff;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+    .form-group-row {
+        display: flex;
+        gap: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    select {
+        padding-right: 30px;
+        appearance: none;
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIj48cGF0aCBkPSJNNS4zNTcgMy4wMzdsLTUuMzU3IDUuMzU3IDEuNDI0IDEuNDI0TDYgNS45MzFsNC41NzYgNC41NzV8IDEuNDI0LTEuNDI0eiIvPjwvc3ZnPg==') no-repeat right 10px center;
+        background-size: 12px;
+    }
+
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    .radio-group {
+        display: flex;
+        gap: 10px;
+    }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+        }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #43b0f1;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+        button:hover {
+            background-color: #057dcd;
+        }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 300px;
+        text-align: center;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .success-sign {
+        font-size: 28px;
+        font-weight: bold;
+        color: green;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+</style>
+
+<body>
+    <div class="form-container">
+        @using (Html.BeginForm("RegistrationDoctor", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <h1>Application Form</h1>
+            @Html.ValidationSummary(true)
+            <form id="registration-form" action="#" method="post">
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="df_name" placeholder="Full Name" required>
+                        @Html.ValidationMessageFor(model => model.df_name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="df_email" placeholder="Enter Email" required>
+                        @Html.ValidationMessageFor(model => model.df_email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" name="df_phone" placeholder="Enter Number" required>
+                        @Html.ValidationMessageFor(model => model.df_phone, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" name="df_address" placeholder="Company" required>
+                        @Html.ValidationMessageFor(model => model.df_address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label>Specialty</label>
+                        <input type="text" name="df_spe" placeholder="Enter Specialty" required>
+                        @Html.ValidationMessageFor(model => model.df_spe, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" name="DfImage" placeholder="Image" required>
+                        @Html.ValidationMessageFor(model => model.df_image, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="area-code">Resume</label>
+                    <input type="file" id="area-code" name="DfPdf" placeholder="Area Code" required>
+                    @Html.ValidationMessageFor(model => model.df_resume, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Experience</label>
+                    <select name="df_experience" required>
+                        @Html.ValidationMessageFor(model => model.df_experience, "", new { @class = "text-danger" })
+                        <option value="" disabled selected>Choose Option</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="More">More</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="area-code">Resume</label>
+                    <input type="password" id="area-code" name="df_password" placeholder="Area Code" required>
+                    @Html.ValidationMessageFor(model => model.df_password, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit">Apply</button>
+            </form>}
+    </div>
+</body>
