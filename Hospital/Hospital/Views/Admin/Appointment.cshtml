@@ -1,94 +1,65 @@
-﻿@model IEnumerable<Hospital.Models.Appointment>
+﻿@model List<Hospital.Models.Appointment>
 
 @{
     ViewBag.Title = "Appointments";
-    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 }
 
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Appointments</h1>
-    <table class="table table-hover shadow">
-        <thead class="thead-dark">
+<div class="container">
+    <h2 class="mt-4">Appointments</h2>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <table class="table table-striped table-hover">
+        <thead class="thead-light">
             <tr>
+                <th>Appointment ID</th>
                 <th>Patient Name</th>
-                <th>Date & Time</th>
+                <th>Date</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var appointment in Model)
+            @for (int i = 0; i < Model.Count; i++)
             {
                 <tr>
-                    <td>@(appointment.a_fname + " " + appointment.a_lname)</td>
-                    <td>@appointment.date.ToString("yyyy-MM-dd hh:mm tt")</td>
+                    <td>@Model[i].a_id</td>
+                    <td>@Model[i].a_name</td>
+                    <td>@Model[i].date.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@Model[i].status</td>
                     <td>
-                        <span class="badge @(appointment.status == "Confirmed" ? "badge-success" : appointment.status == "Pending" ? "badge-warning" : "badge-danger")">
-                            @appointment.status
-                        </span>
-                    </td>
-                    <td>
-                     
-                        <a href="@Url.Action("ConfirmAppointment", "Admin", new { id = appointment.a_id })" class="btn btn-success btn-sm">Confirm</a>
-                        <a href="@Url.Action("PendingAppointment", "Admin", new { id = appointment.a_id })" class="btn btn-warning btn-sm">Pending</a>
+                        @* Debugging output *@
+                        <span class="d-none">@Model[i].status</span>  <!-- Temporarily add this line to see the status value -->
+
+                        @if (Model[i].status != "Pending")
+                        {
+                            <a href="@Url.Action("CancelAppointment", "Admin", new { id = Model[i].a_id })" class="btn btn-danger btn-sm">Cancel</a>
+                            <a href="@Url.Action("CompleteAppointment", "Admin", new { id = Model[i].a_id })" class="btn btn-primary btn-sm">Complete</a>
+                        }
+                        else if (Model[i].status == "Confirmed")
+                        {
+                            <a href="@Url.Action("CompleteAppointment", "Admin", new { id = Model[i].a_id })" class="btn btn-primary btn-sm">Complete</a>
+                           
+                        }
+                        else if (Model[i].status == "Cancelled" || Model[i].status == "Completed")
+                        {
+                            <span class="text-muted">No actions available</span>
+                        }
+
+                        else
+                        {
+                            <span class="text-muted">Invalid status</span>
+                        }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
-<!-- Add custom CSS for the appointments page -->
-<style>
-    .table-hover tbody tr:hover {
-        background-color: #f2f2f2;
-    }
-
-    .badge {
-        padding: 0.5em 0.75em;
-        font-size: 0.85em;
-    }
-
-    .btn-sm {
-        font-size: 0.85em;
-    }
-
-    .badge-success {
-        background-color: #28a745;
-    }
-
-    .badge-warning {
-        background-color: #ffc107;
-    }
-
-    .badge-danger {
-        background-color: #dc3545;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-    }
-
-    .btn-danger {
-        background-color: #dc3545;
-        border-color: #dc3545;
-    }
-
-    .btn-success {
-        background-color: #28a745;
-        border-color: #28a745;
-    }
-
-    .btn-warning {
-        background-color: #ffc107;
-        border-color: #ffc107;
-    }
-
-        .btn-primary:hover,
-        .btn-danger:hover,
-        .btn-success:hover,
-        .btn-warning:hover {
-            opacity: 0.85;
-        }
-</style>
