@@ -1,0 +1,99 @@
+﻿@model Demo.Models.Medicine
+
+@{
+    ViewBag.Title = "Add Medicine";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="medicine-form">
+    <h2>Add New Medicine</h2>
+    @using (Html.BeginForm("Medicine", "AdminMain", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.med_name)
+            @Html.TextBoxFor(model => model.med_name, new { @class = "form-control", placeholder = "Enter medicine name" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.med_description)
+            @Html.TextAreaFor(model => model.med_description, new { @class = "form-control", placeholder = "Enter medicine description", rows = 3 })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.med_price)
+            @Html.TextBoxFor(model => model.med_price, new { @class = "form-control", placeholder = "Enter price" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.med_quantity)
+            @Html.TextBoxFor(model => model.med_quantity, new { @class = "form-control", placeholder = "Enter Quantity", type = "number" })
+        </div>
+        <button type="submit" class="btn btn-primary">Add Medicine</button>
+    }
+
+    <!-- Displaying list of added medicines -->
+    <h3 class="mt-5">Medicine List</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Medicine Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var med in ViewBag.MedicineList as List<Demo.Models.Medicine>)
+            {
+                <tr>
+                    <td>@med.med_name</td>
+                    <td>@med.med_description</td>
+                    <td>@med.med_price</td>
+                    <td>@med.med_quantity</td>
+                    <td>
+                        <!-- Delete button -->
+                        @using (Html.BeginForm("DeleteMedicine", "AdminMain", FormMethod.Get))
+                        {
+                            @Html.Hidden("id", med.med_id)
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .medicine-form {
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f7f7f7;
+        width: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .medicine-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+        }
+</style>

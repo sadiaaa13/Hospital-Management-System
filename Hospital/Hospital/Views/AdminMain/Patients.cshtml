@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Demo.ViewModel.PatientViewModel>
+
+@{
+    ViewBag.Title = "Patient List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="form-head align-items-center d-flex mb-sm-4 mb-3">
+    <div class="me-auto">
+        <h2 class="text-black font-w600">Patients</h2>
+        <p class="mb-0">Hospital Admin Dashboard</p>
+    </div>
+    <!-- Add Patient button triggers modal -->
+    <!--<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addOrderModal">Add Patient</button>  -->
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="table-responsive card-table">
+            <div id="example5_wrapper" class="dataTables_wrapper no-footer">
+                <table id="example5" class="display dataTablesCard white-border table-responsive-xl dataTable no-footer">
+                    <thead>
+                        <tr role="row">
+                            <th>Patient ID</th>
+                            <th>Date Check-in</th>
+                            <th>Patient Name</th>
+                            <th>Doctor Assigned</th>
+                            <th>Disease</th>
+                            <th>Room No.</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var patient in ViewBag.PatientList as List<Demo.ViewModel.PatientViewModel>)
+                        {
+                            <tr role="row">
+                                <td>@patient.p_id</td>
+                                <td>@(patient.checkin_date?.ToString("yyyy-MM-dd") ?? "")</td>
+                                <td>@patient.p_name</td>
+                                <td>@patient.doctor_name</td>
+                                <td>@patient.disease</td>
+                                <td>@patient.room_number</td>
+                                <td>
+                                    <!-- Edit button triggers modal with patient data -->
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#addOrderModal"
+                                            onclick="editPatient(@patient.p_id, '@patient.p_name', '@patient.disease', '@(patient.checkin_date?.ToString("yyyy-MM-dd") ?? "")', '@patient.room_number')">
+                                        Edit
+                                    </button>
+
+                                    <!-- Delete button -->
+                                    @using (Html.BeginForm("DeletePatient", "AdminMain", FormMethod.Get))
+                                    {
+                                        @Html.Hidden("id", patient.p_id)
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Adding/Editing Patient Information -->
+<div class="modal fade" id="addOrderModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Patient</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("SavePatient", "AdminMain", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label class="text-black font-w500">Patient Name</label>
+                        <input type="text" class="form-control" id="patientName" name="p_name">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-black font-w500">Patient ID</label>
+                        <input type="text" class="form-control" id="patientID" name="p_id" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-black font-w500">Disease</label>
+                        <input type="text" class="form-control" id="disease" name="disease">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-black font-w500">Date Check In</label>
+                        <input type="date" class="form-control" id="checkinDate" name="checkin_date">
+                    </div>
+                    <div class="form-group">
+                        <label class="text-black font-w500">Room Number</label>
+                        <input type="text" class="form-control" id="roomNumber" name="room_number">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+</div>
+
+<script>
+    function editPatient(id, name, disease, date, roomNumber) {
+        // Set form fields with the selected patient's data
+        document.getElementById('patientID').value = id;
+        document.getElementById('patientName').value = name;
+        document.getElementById('disease').value = disease;
+        document.getElementById('checkinDate').value = date;
+        document.getElementById('roomNumber').value = roomNumber;
+    }
+</script>
