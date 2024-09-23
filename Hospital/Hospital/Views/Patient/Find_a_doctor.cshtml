@@ -1,4 +1,9 @@
 ﻿
+@using Hospital.Models
+@model List<FDoctor>
+
+
+@using Hospital.Models
 @{
     ViewBag.Title = "Find_a_doctor";
 }
@@ -76,38 +81,17 @@
 </head>
 <body>
     <div class="card-container">
+        @foreach (FDoctor doctor in Model)
+        // Explicit typing of the loop variable
+        {
         <div class="doctor-card">
-            <img src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg" alt="Doctor Image">
-            <h5>Abdul Sattar, MD</h5>
-            <p>Medicine,Dhaka Medical College </p>
-            <a href="@Url.Action("Request_for_an_apointment", "Patient")" class="btn">Request an Appointment</a>
-        </div>
+            <img src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg alt="Doctor Image">
 
-        <div class="doctor-card">
-            <img src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg" alt="Doctor Image">
-            <h5>Ahmed R. Taha, MD</h5>
-            <p>Cardio, Dhaka Medical College </p>
-            <a href="#" class="btn">Request an Appointment</a>
-        </div>
-        <div class="doctor-card">
-            <img src="https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg" alt="Doctor Image">
-            <h5>Scott Carey Barr, MD</h5>
-            <p>Arthopedics, Emergency Medicine Institute</p>
+            <h5>@doctor.df_name</h5>
+            <p>@doctor.df_spe</p>
             <a href="@Url.Action("Request_for_an_apointment", "Patient")" class="btn">Request an Appointment</a>
-          
         </div>
-        <div class="doctor-card">
-            <img src="https://via.placeholder.com/100" alt="Doctor Image">
-            <h5>Abdulkadir A. Salhan, MD</h5>
-            <p>Hospital Medicine, Medical Subspecialties Institute</p>
-            <a href="#" class="btn">Request an Appointment</a>
-        </div>
-        <div class="doctor-card">
-            <img src="https://via.placeholder.com/100" alt="Doctor Image">
-            <h5>Abdullah Shatnawei, MD</h5>
-            <p>Gastroenterology, Digestive Disease Institute</p>
-            <a href="#" class="btn">Request an Appointment</a>
-        </div>
+        }
     </div>
 </body>
 </html>
