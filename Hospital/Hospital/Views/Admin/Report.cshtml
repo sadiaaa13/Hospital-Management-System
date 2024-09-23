@@ -1,20 +1,31 @@
 ﻿@model IEnumerable<Hospital.Models.Report>
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Uploaded Reports</h1>
+    <h1 class="text-center mb-4">Reports</h1>
     <table class="table table-hover shadow">
         <thead class="thead-dark">
             <tr>
+                <th>Report ID</th>
+                <th>Patient ID</th>
                 <th>File Name</th>
+                <th>File Path</th>
                 <th>Upload Date</th>
+                <th>Doctor ID</th>
+                <th>Action</th> <!-- Add action column for download -->
             </tr>
         </thead>
         <tbody>
             @foreach (var report in Model)
             {
                 <tr>
+                    <td>@report.ReportId</td>
+                    <td>@report.p_id</td>
                     <td>@report.FileName</td>
-                    <td>@report.DateTime_UploadDate</td>
+                    <td>@report.FilePath</td>
+                    <td>@report.df_id</td>
+                    <td>
+                        <a href="@Url.Content(report.FilePath)" class="btn btn-success" download>Download</a>
+                    </td>
                 </tr>
             }
         </tbody>

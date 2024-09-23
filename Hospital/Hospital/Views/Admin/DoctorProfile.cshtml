@@ -1,40 +1,76 @@
-﻿@model Hospital.Models.DoctorProfile
+﻿@model Hospital.Models.FDoctor
 
 @{
-    ViewBag.Title = "Doctor Profile";
-   // Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+    ViewBag.Title = "Edit Doctor Profile";
 }
 
 <div class="container profile-container">
-    <div class="row">
-        <div class="col-md-4 profile-image">
-            <img src="@Model.ProfileImageUrl" alt="Doctor Profile Image" class="img-fluid rounded-circle">
-            <h3 class="text-center mt-3">@Model.Name</h3>
+    <h2 class="text-center my-4">Edit Doctor Profile</h2>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
         </div>
-        <div class="col-md-8 profile-details">
-            <h2 class="text-uppercase">Profile</h2>
-            <hr>
-            <h4>@Model.Name</h4>
-            <p>@Model.Qualification</p>
-            <p>@Model.Hospital</p>
-            <h3 class="text-uppercase">Speciality</h3>
-            <hr>
-            @foreach (var specialty in Model.Specialties)
-            {
-                <span class="badge badge-dark">@specialty</span>
-            }
-            <h3 class="text-uppercase">Experience</h3>
-            <hr>
-            <p>@Model.Experience</p>
-            <h3 class="text-uppercase">Contact</h3>
-            <hr>
-            <p>@Model.ContactNumber</p>
-            <h3 class="text-uppercase">Address</h3>
-            <hr>
-            <p>@Model.Address</p>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
         </div>
-    </div>
+    }
+
+    @using (Html.BeginForm("EditDoctorProfile", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="@Url.Content(Model.df_image)" alt="Profile Image" class="img-fluid rounded-circle mb-3" style="max-width: 200px;">
+                <div class="form-group">
+                    <label for="profileImage">Upload New Profile Image</label>
+                    <input type="file" name="newImage" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <h3>Details</h3>
+                <div class="form-group">
+                    <label for="df_name">Name</label>
+                    <input type="text" name="df_name" class="form-control" value="@Model.df_name" required />
+                </div>
+                <div class="form-group">
+                    <label for="df_phone">Phone</label>
+                    <input type="text" name="df_phone" class="form-control" value="@Model.df_phone" required />
+                </div>
+                <div class="form-group">
+                    <label for="df_address">Address</label>
+                    <input type="text" name="df_address" class="form-control" value="@Model.df_address" required />
+                </div>
+                <div class="form-group">
+                    <label for="df_spe">Specialization</label>
+                    <input type="text" name="df_spe" class="form-control" value="@Model.df_spe" required />
+                </div>
+               
+                <div class="form-group">
+                    <label for="df_resume">Resume</label>
+                    <a href="@Url.Content(Model.df_resume)" target="_blank">View Current Resume</a>
+                    <input type="file" name="newResume" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    }
 </div>
 
+<style>
+    .profile-container {
+        margin-top: 20px;
+    }
 
+    .form-group label {
+        font-weight: bold;
+    }
 
+    .form-group input {
+        margin-bottom: 10px;
+    }
+</style>

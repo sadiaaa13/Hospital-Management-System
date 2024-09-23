@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Demo.Models.Doctor>
+
+@{
+    ViewBag.Title = "Doctor List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="form-head align-items-center d-flex mb-sm-4 mb-3">
+    <div class="me-auto">
+        <h2 class="text-black font-w600">Doctors</h2>
+        <p class="mb-0">Hospital Admin Dashboard</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="table-responsive card-table">
+            <div id="example5_wrapper" class="dataTables_wrapper no-footer">
+                <table id="example5" class="display dataTablesCard white-border table-responsive-xl dataTable no-footer">
+                    <thead>
+                        <tr role="row">
+                            <th>Doctor ID</th>
+                            <th>Doctor Name</th>
+                            <th>Department</th>
+                            <th>Contact</th>
+                            <th>Working Hours</th>
+                            <th >Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var doc in ViewBag.DoctorList as List<Demo.Models.Doctor>)
+                        {
+                            <tr role="row">
+                                <td>@doc.d_id</td>
+                                <td>@doc.d_name</td>
+                                <td>@doc.d_dept</td>
+                                <td>@doc.d_contact</td>
+                                <td>@doc.d_wh</td>
+                                <td>
+                                    <!-- Delete button -->
+                                    @using (Html.BeginForm("DeleteDoctor", "AdminMain", FormMethod.Get))
+                                    {
+                                        @Html.Hidden("id", doc.d_id)
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿@model Hospital.Models.Report
+
+@{
+    ViewBag.Title = "Report Details";
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+
+<h2>Report Details</h2>
+
+<p><strong>Report ID:</strong> @Model.ReportId</p>
+<p><strong>Patient ID:</strong> @Model.p_id</p>
+<p><strong>File Name:</strong> @Model.FileName</p>
+<p><strong>Uploaded On:</strong> @Model.DateTime_UploadDate.ToString("dd-MM-yyyy")</p>
+
+<a href="@Url.Content(Model.FilePath)" download class="btn btn-success">Download Report</a>

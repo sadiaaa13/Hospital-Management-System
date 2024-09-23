@@ -1,24 +1,41 @@
 ﻿@model IEnumerable<Hospital.Models.Patient>
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Patients</h1>
-    <table class="table table-hover shadow">
-        <thead class="thead-dark">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var patient in Model)
-            {
+    <h1 class="text-center mb-4">Patients with Appointments</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center" role="alert">
+            No patients found for the selected doctor.
+        </div>
+    }
+    else
+    {
+        <table class="table table-hover shadow">
+            <thead class="thead-light">
                 <tr>
-                    <td>@patient.p_firstname</td>
-                    <td>@patient.p_lastname</td>
-                    <td>@patient.p_email</td>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var patient in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => patient.p_firstname)</td>
+                        <td>@Html.DisplayFor(modelItem => patient.p_lastname)</td>
+                        <td>@Html.DisplayFor(modelItem => patient.p_email)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 </div>
+
+<style>
+    /* Custom styles for additional enhancement */
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa; /* Light grey on hover */
+    }
+</style>

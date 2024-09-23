@@ -6,33 +6,48 @@
     <title>@ViewBag.Title - Hospital</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/css/site.css" />
+    <style>
+        .logout-btn {
+            margin-left: auto;
+            margin-right:30px;/* Push the button to the right */
+            background-color: navy; /* Navy blue background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            padding: 10px 20px; /* Add padding for better appearance */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+
+            .logout-btn:hover {
+                background-color: white; /* White background on hover */
+                color: navy; /* Navy text on hover */
+            }
+    </style>
 </head>
+
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="index.html"><img src="~/Content/images/logo1.png"></a>
-       
+        <a href="index.html"><img src="~/Content/images/logo1.png" alt="Hospital Logo"></a>
+
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="@Url.Action("Dashboard", "Admin")">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="@Url.Action("Patients", "Admin")">Patients</a></li>
                 <li class="nav-item"><a class="nav-link" href="@Url.Action("Report", "Admin")">Report</a></li>
                 <li class="nav-item"><a class="nav-link" href="@Url.Action("Appointment", "Admin")">Appointment</a></li>
-                <li class="nav-item"><a class="nav-link" href="@Url.Action("DoctorProfile", "Admin", new { id = 1 })">Doctor Profile</a></li> <!-- Example link with id = 1 -->
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("DoctorProfile", "Admin", new { id = 1 })">Doctor Profile</a></li>
             </ul>
+            <a class="btn logout-btn" href="@Url.Action("LoginDoctor", "Login")">Logout</a>
         </div>
     </nav>
-
 
     <div class="container mt-4">
         @RenderBody()
     </div>
-
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-

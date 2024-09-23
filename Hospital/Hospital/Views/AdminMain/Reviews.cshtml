@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Demo.Models.Review>
+@{
+    ViewBag.Title = "Reviews";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <!-- Other head content -->
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Manage Reviews</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Review ID</th>
+                    <th>Patient ID</th>
+                    <th>Review Text</th>
+                    <th>Review Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var review in Model)
+                {
+                    <tr>
+                        <td>@review.review_id</td>
+                        <td>@review.p_id</td>
+                        <td>@review.review_text</td>
+                        <td>@review.review_date?.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <!-- Delete Button -->
+                            @using (Html.BeginForm("DeleteReview", "AdminMain", FormMethod.Post))
+                            {
+                                @Html.Hidden("id", review.review_id)
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            }
+
+                            <!-- Post Button -->
+                            @using (Html.BeginForm("PostReview", "AdminMain", FormMethod.Post))
+                            {
+                                @Html.Hidden("id", review.review_id)
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="fas fa-paper-plane"></i> Post
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .container {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+        background-color: white;
+    }
+
+    th {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .btn-danger {
+        margin-right: 5px;
+    }
+
+    .btn-sm {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    h2 {
+        font-family: 'Arial', sans-serif;
+        color: #343a40;
+        font-weight: bold;
+    }
+</style>
